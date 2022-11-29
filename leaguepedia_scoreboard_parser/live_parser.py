@@ -1,8 +1,8 @@
 from leaguepedia_scoreboard_parser.components.get_and_cast_game import get_live_game
-from leaguepedia_scoreboard_parser.riot_parser import RiotParser
+from leaguepedia_scoreboard_parser.riot_parser import Parser
 
 
-class LiveParser(RiotParser):
+class LiveParser(Parser):
     statslink = "rpgid"
     version = 5
 
@@ -71,3 +71,6 @@ class LiveParser(RiotParser):
         if LiveParser.SERVER_TO_REGION.get(url.split("_")[0]) is not None:
             return True
         return False
+
+    def get_checksum(self, game):
+        return None
