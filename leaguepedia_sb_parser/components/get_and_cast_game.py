@@ -2,6 +2,7 @@ from bayesapiwrapper import BayesApiWrapper
 import riot_transmute
 from riotwatcher import LolWatcher
 import os
+import json
 
 
 def get_bayes_game(game):
@@ -10,9 +11,25 @@ def get_bayes_game(game):
     return game_dto
 
 
+def get_riot_api_key():
+    config_path = os.path.join(os.path.expanduser("~"), ".config", "leaguepedia_sb_parser")
+    keys_file = os.path.join(config_path, "keys.json")
+    if not os.path.exists(config_path):
+        os.makedirs(config_path)
+    if not os.path.isfile(keys_file):
+        print("The Riot API Key was not found")
+        riot_api_key = input("Riot API key: ")
+        with open(file=keys_file, mode="w+", encoding="utf8") as f:
+            json.dump(
+                {"riot_api_key": riot_api_key}, f, ensure_ascii=False
+            )
+    with open(file=keys_file, mode="r+", encoding="utf8") as f:
+        riot_api_key = json.load(f)["riot_api_key"]
+    return riot_api_key
+
+
 def get_live_game(game):
-    riot_api_key = os.environ.get("RIOT_API_KEY")
-    lol_watcher = LolWatcher(riot_api_key)
+    lol_watcher = LolWatcher(get_riot_api_key())
     region = game.split("_")[0]
     summary, details = lol_watcher.match.by_id(
         region, game
