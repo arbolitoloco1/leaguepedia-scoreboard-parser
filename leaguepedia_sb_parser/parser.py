@@ -66,7 +66,7 @@ class Parser(object):
     def clear_warnings(self):
         self.warnings = []
 
-    def parse_series(self, urls: list, include_header=True):
+    def parse_series(self, urls: list, header=True):
         pass
 
     def parse_game(self, url):
@@ -283,6 +283,7 @@ class Parser(object):
             {'kills': player.endOfGameStats.kills},
             {'deaths': player.endOfGameStats.deaths},
             {'assists': player.endOfGameStats.assists},
+            {'level': player.endOfGameStats.level},
             {'gold': player.endOfGameStats.gold},
             {'cs': player.endOfGameStats.cs},
             {'visionscore': self.round(player.endOfGameStats.visionScore)},
@@ -336,6 +337,8 @@ class Parser(object):
             return False
         runes = player.runes
         if runes is None:
+            return False
+        if not runes:
             return False
         if any([rune is None for rune in runes]):
             return False
