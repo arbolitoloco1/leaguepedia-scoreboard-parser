@@ -1,6 +1,6 @@
 # Install/upgrade:
 ```
-pip install -U git+git://github.com/RheingoldRiver/leaguepedia_sb_parser
+pip install -U git+https://github.com/arbolitoloco1/leaguepedia_scoreboard_parser
 ```
 
-Hosted here: https://river.me/utils/parser/
+Hosted here: https://arbolitoloco.xyz/parser

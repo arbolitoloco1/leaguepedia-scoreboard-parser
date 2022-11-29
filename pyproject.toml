@@ -1,12 +1,20 @@
 [tool.poetry]
-name = "leaguepedia_sb_parser"
-version = "0.0.0"
+name = "leaguepedia-scoreboard-parser"
+version = "0.1.6"
 description = ""
 authors = ["RheingoldRiver"]
+packages = [{include = "leaguepedia_scoreboard_parser"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-lol-esports-parser = {git = "https://github.com/mrtolkien/lol_esports_parser.git"}
+python = "^3.9"
+lol-dto = "2.0.0"
+lol-id-tools = "2.0.1"
+mwrogue = "^0.1.5"
+lol-qq-parser = {git = "https://github.com/mrtolkien/lol_qq_parser.git"}
+riot-transmute = "2.1.2"
+riotwatcher = "3.2.3"
 
-[tool.poetry.dev-dependencies]
-pytest = "^3.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
