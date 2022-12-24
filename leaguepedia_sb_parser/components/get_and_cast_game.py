@@ -1,4 +1,4 @@
-from bayesapiwrapper import BayesApiWrapper
+from bayes_lol_client import BayesEMH
 import riot_transmute
 from riotwatcher import LolWatcher
 import os
@@ -6,7 +6,7 @@ import json
 
 
 def get_bayes_game(game):
-    summary, details = BayesApiWrapper().get_game(game)
+    summary, details = BayesEMH().get_game_data(game)
     game_dto = cast_game(summary, details)
     return game_dto
 
