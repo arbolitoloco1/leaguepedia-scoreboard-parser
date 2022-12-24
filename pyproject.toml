@@ -13,6 +13,7 @@ mwrogue = "^0.1.5"
 lol-qq-parser = {git = "https://github.com/mrtolkien/lol_qq_parser.git"}
 riot-transmute = "^2.1.2"
 riotwatcher = "^3.2.3"
+bayes_lol_client = "^1.0.0"
 
 
 [build-system]
