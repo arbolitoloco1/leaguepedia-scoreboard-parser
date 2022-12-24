@@ -1,4 +1,4 @@
-from leaguepedia_sb_parser.components.get_and_cast_game import get_live_game
+from leaguepedia_sb_parser.components.fetch_game import get_live_game
 from leaguepedia_sb_parser.parser import Parser
 
 

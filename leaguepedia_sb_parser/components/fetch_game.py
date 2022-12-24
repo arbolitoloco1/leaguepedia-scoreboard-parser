@@ -1,14 +1,15 @@
 from bayes_lol_client import BayesEMH
-import riot_transmute
 from riotwatcher import LolWatcher
+import riot_transmute
+
 import os
 import json
 
 
 def get_bayes_game(game):
-    summary, details = BayesEMH().get_game_data(game)
-    game_dto = cast_game(summary, details)
-    return game_dto
+    emh = BayesEMH()
+    summary, details = emh.get_game_data(game)
+    return cast_game(summary, details)
 
 
 def get_riot_api_key():
@@ -34,14 +35,12 @@ def get_live_game(game):
     summary, details = lol_watcher.match.by_id(
         region, game
     ), lol_watcher.match.timeline_by_match(region, game)
-    game_dto = cast_game(summary["info"], details["info"])
-    return game_dto
+    return cast_game(summary["info"], details["info"])
 
 
 def cast_game(game_summary, game_details):
     game_dto_summary = riot_transmute.v5.match_to_game(game_summary)
     game_dto_details = riot_transmute.v5.match_timeline_to_game(game_details)
-    merged_dto = riot_transmute.merge_games_from_riot_match_and_timeline(
+    return riot_transmute.merge_games_from_riot_match_and_timeline(
         game_dto_summary, game_dto_details
     )
-    return merged_dto
