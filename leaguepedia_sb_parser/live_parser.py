@@ -20,6 +20,11 @@ class LiveParser(Parser):
         "EUW1": "EUROPE",
         "TR1": "EUROPE",
         "RU": "EUROPE",
+        "PH2": "SEA",
+        "SG2": "SEA",
+        "TH2": "SEA",
+        "TW2": "SEA",
+        "VN2": "SEA",
     }
 
     def query_rpgid(self, platform_game_id):
