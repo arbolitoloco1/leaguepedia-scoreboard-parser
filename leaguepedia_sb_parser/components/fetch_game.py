@@ -5,6 +5,16 @@ import riot_transmute
 import os
 import json
 
+from mwrogue.esports_client import EsportsClient
+
+
+def get_game_from_wiki(game, site: EsportsClient):
+    try:
+        summary, details = site.get_data_and_timeline(game, 5)
+    except KeyError:
+        summary, details = site.get_data_and_timeline(game, 4)
+    return cast_game(summary, details)
+
 
 def get_bayes_game(game):
     emh = BayesEMH()
